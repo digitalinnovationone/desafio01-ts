@@ -9,13 +9,13 @@ export abstract class DioAccount {
     this.accountNumber = accountNumber;
   }
 
+  getName = (): string => {
+    return this.name;
+  };
+
   setName = (name: string): void => {
     this.name = name;
     console.log("Nome alterado com sucesso!");
-  };
-
-  getName = (): string => {
-    return this.name;
   };
 
   deposit = (accountNumber: number): void => {
