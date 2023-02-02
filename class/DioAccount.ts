@@ -33,7 +33,7 @@ export abstract class DioAccount {
     return console.log(this.balance);
   };
 
-  //get to only get value, setter to change property value.
+  //get to only get value, setter to change property value
   setBalance = (value: number): void => {
     this.balance += value;
   };
