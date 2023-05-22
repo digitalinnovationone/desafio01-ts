@@ -15,3 +15,5 @@ companyAccount.deposit(30);
 companyAccount.withdraw(4);
 companyAccount.withdraw(10);
 companyAccount.withdraw(50);
+
+companyAccount.getLoan(500);
