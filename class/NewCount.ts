@@ -8,8 +8,8 @@ export class NewCount extends DioAccount {
 
     newDeposito = (valueDeposito:number):number => {
         const valueAtualizado = valueDeposito + 10;
-        const atualizaSaldo = this.balance + valueAtualizado
-        this.balance = atualizaSaldo
+        const atualizaSaldo = this.getBalance() + valueAtualizado
+        this.setBalance(atualizaSaldo)
         return valueAtualizado
     }
 }
