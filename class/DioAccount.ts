@@ -2,7 +2,7 @@ export abstract class DioAccount {
     private name: string;
     private accountNumber: number;
     private balance: number = 100;
-    private status: boolean = true;
+    private accountStatusIsValid: boolean = true;
 
     constructor(name: string, accountNumber: number) {
         this.name = name;
@@ -11,19 +11,19 @@ export abstract class DioAccount {
 
     setName = (name: string): void => {
         this.name = name;
-        console.log('Nome alterado com sucesso!');
+        console.log('Your name has been altered successfully!');
     };
 
     getName = (): string => {
         return this.name;
     };
 
-    deposit = (): void => {
-        if (this.validateStatus()) {
-            console.log('Deposit');
+    deposit = (amountToDeposit: number): number => {
+        if (this.isValidAccount()) {
+            this.balance += amountToDeposit;
+            return this.balance;
         }
-
-
+        throw new Error('You must validate your account before deposit');
     };
 
     withdraw = (): void => {};
@@ -32,11 +32,10 @@ export abstract class DioAccount {
         console.log(this.balance);
     };
 
-    private validateStatus = (): boolean => {
-        if (this.status) {
-            return this.status;
+    private isValidAccount = (): boolean => {
+        if (this.accountStatusIsValid) {
+            return true;
         }
-
-        throw new Error('Conta inválida');
+        throw new Error('Your account is not valid');
     };
 }
