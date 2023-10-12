@@ -37,4 +37,21 @@ export abstract class DioAccount {
         throw new Error('Your account is not valid for deposit');
 
     }
+
+    public withdraw(amountToWithdraw: number): number {
+        if (!this.accountIsValid) {
+            throw new Error('Your account is not valid for withdraw');
+        }
+
+        if (amountToWithdraw > this.balance) {
+            throw new Error('You do not have enough funds to withdraw');
+        }
+
+        this.balance -= amountToWithdraw;
+        return this.balance;
+    }
+
+    public getBalance(): number {
+        return this.balance;
+    }
 }
