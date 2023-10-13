@@ -55,3 +55,4 @@ export abstract class DioAccount {
         return this.balance;
     }
 }
+
