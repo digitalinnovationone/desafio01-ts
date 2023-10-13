@@ -11,7 +11,7 @@ export abstract class DioAccount {
 
     public setName(name: string): void {
         this.name = name;
-        console.log('Your name has been altered successfully!');
+        console.log(`Your name has been altered successfully ${this.name}!`);
     }
 
     public getName(): string {
