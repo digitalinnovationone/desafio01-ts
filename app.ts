@@ -1,9 +1,26 @@
-import { CompanyAccount } from './class/CompanyAccount'
-import { PeopleAccount } from './class/PeopleAccount'
+import { PeopleAccount } from "./class/PeopleAccount";
+import { CompanyAccount } from "./class/CompanyAccount";
+import { StudentAccount } from "./class/StudentAccount";
 
-const peopleAccount: PeopleAccount = new PeopleAccount(1, 'Nath', 10)
-console.log(peopleAccount)
-peopleAccount.deposit()
-const companyAccount: CompanyAccount = new CompanyAccount('DIO', 20)
-companyAccount.deposit()
-console.log(companyAccount)
+const peopleAccount: PeopleAccount = new PeopleAccount(1, "Jeni", 10);
+console.log("=======================  PeopleAccount  =======================");
+console.table(peopleAccount);
+peopleAccount.getName();
+peopleAccount.setBalance(100);
+peopleAccount.getBalance();
+peopleAccount.deposit(100);
+peopleAccount.withdraw(10);
+peopleAccount.validateStatus();
+
+const companyAccount: CompanyAccount = new CompanyAccount("Jeni", 10);
+console.log("=======================  CompanyAccount  =======================");
+console.table(companyAccount);
+companyAccount.setBalance(100);
+companyAccount.getLoan(10);
+
+const studentAccount: StudentAccount = new StudentAccount("Jeni", 10);
+console.log("=======================  StudentAccount  =======================");
+console.table(studentAccount);
+studentAccount.setBalance(100);
+studentAccount.deposit(10);
+console.log("================================================================");

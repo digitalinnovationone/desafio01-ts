@@ -1,42 +1,56 @@
 export abstract class DioAccount {
-  private name: string
-  private readonly accountNumber: number
-  balance: number = 0
-  private status: boolean = true
+  private readonly name: string;
+  private readonly accountNumber: number;
+  private balance: number = 0;
+  private status: boolean = true;
 
-  constructor(name: string, accountNumber: number){
-    this.name = name
-    this.accountNumber = accountNumber
-  }
-
-  setName = (name: string): void => {
-    this.name = name
-    console.log('Nome alterado com sucesso!')
+  constructor(name: string, accountNumber: number) {
+    this.name = name;
+    this.accountNumber = accountNumber;
   }
 
   getName = (): string => {
-    return this.name
-  }
+    console.log("DioAccount: getName ", this.name);
+    return this.name;
+  };
 
-  deposit = (): void => {
-    if(this.validateStatus()){
-      console.log('Voce depositou')
+  deposit = (value: number): void => {
+    let balance = this.balance;
+    if (balance < value) throw new Error("Saldo insuficiente");
+    if (this.validateStatus()) {
+      console.log("DioAccount: Você depositou", value);
+      this.setBalance((balance += value));
     }
-  }
+  };
 
-  withdraw = (): void => {
-    console.log('Voce sacou')
-  }
+  withdraw = (value: number): void => {
+    let balance = this.balance;
+    if (balance < value) throw new Error("DioAccount: Saldo insuficiente");
+    if (this.validateStatus()) {
+      console.log("DioAccount: Você sacou", value);
+      this.setBalance((balance -= value));
+    }
+  };
 
-  getBalance = (): void => {
-    console.log(this.balance)
-  }
+  setBalance = (value: number): void => {
+    this.balance = value;
+    console.log(
+      "DioAccount: Saldo alterado com sucesso, seu novo saldo é",
+      this.balance
+    );
+  };
 
-  private validateStatus = (): boolean => {
+  getBalance = (): number => {
+    console.log("DioAccount: getBalance ", this.balance);
+    return this.balance;
+  };
+
+  validateStatus = (): boolean => {
     if (this.status) {
-      return this.status
+      console.log("DioAccount: validateStatus ", this.status);
+      return this.status;
     }
 
-    throw new Error('Conta inválida')
-  }
+    throw new Error("DioAccount: Conta inválida");
+  };
 }
