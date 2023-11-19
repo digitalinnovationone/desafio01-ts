@@ -20,7 +20,7 @@ export abstract class DioAccount {
     this.balance -= value;
   }
 
-  private _validateStatus = (): boolean => {
+  protected _validateStatus = (): boolean => {
     if (this.status) {
       return this.status
     }
@@ -28,7 +28,7 @@ export abstract class DioAccount {
     throw new Error('Conta inválida')
   }
 
-  private _validateWithdraw = (value: number): boolean => {
+  protected _validateWithdraw = (value: number): boolean => {
     if (this.balance >= value) {
       return true
     }
