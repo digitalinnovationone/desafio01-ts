@@ -7,6 +7,7 @@ export class NgoAccount extends DioAccount {
 
   deposit = (value: number): void => {
     this._validateStatus();
-    this.balance += value + 10;
+    const newBalance = this.getBalance() + value + 10;
+    this.setBalance(newBalance);
   }
 }
