@@ -1,12 +1,12 @@
 export abstract class DioAccount {
-  private readonly name: string
-  private readonly accountNumber: number
-  private balance: number = 0
-  private status: boolean = true
+  private readonly name: string;
+  private readonly accountNumber: number;
+  private balance: number = 0;
+  private status: boolean = true;
 
   constructor(name: string, accountNumber: number){
-    this.name = name
-    this.accountNumber = accountNumber
+    this.name = name;
+    this.accountNumber = accountNumber;
   }
 
   deposit = (value: number): void => {
@@ -22,18 +22,18 @@ export abstract class DioAccount {
 
   protected _validateStatus = (): boolean => {
     if (this.status) {
-      return this.status
+      return this.status;
     }
 
-    throw new Error('Conta inválida')
+    throw new Error('Conta inválida');
   }
 
   protected _validateWithdraw = (value: number): boolean => {
     if (this.balance >= value) {
-      return true
+      return true;
     }
 
-    throw new Error('Saldo insuficiente')
+    throw new Error('Saldo insuficiente');
   }
 
   getBalance = (): number => {
@@ -45,6 +45,10 @@ export abstract class DioAccount {
   }
 
   getName = (): string => {
-    return this.name
+    return this.name;
+  }
+
+  getAccountNumber = (): number => {
+    return this.accountNumber;
   }
 }
