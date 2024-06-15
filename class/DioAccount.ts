@@ -1,7 +1,7 @@
 export abstract class DioAccount {
   private name: string
   private readonly accountNumber: number
-  balance: number = 0
+  balance: number = 45
   private status: boolean = true
 
   constructor(name: string, accountNumber: number){
@@ -18,18 +18,27 @@ export abstract class DioAccount {
     return this.name
   }
 
-  deposit = (): void => {
+  deposit = (value: number): void => {
     if(this.validateStatus()){
-      console.log('Voce depositou')
+      this.balance = this.balance + value
     }
   }
 
-  withdraw = (): void => {
-    console.log('Voce sacou')
+  withdraw = (value: number): void => {
+    if(value < this.balance && this.validateStatus()){
+      this.balance = this.balance - value
+    }
+    else{
+      throw new Error('Saldo Insuficiente ')
+    }
   }
 
   getBalance = (): void => {
     console.log(this.balance)
+  }
+
+  getStatus = (): boolean => {
+    return this.validateStatus()
   }
 
   private validateStatus = (): boolean => {
