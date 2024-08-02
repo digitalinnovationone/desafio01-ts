@@ -1,42 +1,58 @@
-export abstract class DioAccount {
-  private name: string
-  private readonly accountNumber: number
-  balance: number = 0
-  private status: boolean = true
+export abstract class DioAcount {
+    private readonly name: string;
+    private readonly accountNumber: number;
+    private balance: number = 0 ;
+    private status: boolean = true;
 
-  constructor(name: string, accountNumber: number){
-    this.name = name
-    this.accountNumber = accountNumber
-  }
-
-  setName = (name: string): void => {
-    this.name = name
-    console.log('Nome alterado com sucesso!')
-  }
-
-  getName = (): string => {
-    return this.name
-  }
-
-  deposit = (): void => {
-    if(this.validateStatus()){
-      console.log('Voce depositou')
+    constructor(newName: string, newAccountNumber: number){
+        this.name = newName;
+        this.accountNumber = newAccountNumber; 
     }
-  }
-
-  withdraw = (): void => {
-    console.log('Voce sacou')
-  }
-
-  getBalance = (): void => {
-    console.log(this.balance)
-  }
-
-  private validateStatus = (): boolean => {
-    if (this.status) {
-      return this.status
+    // setName = (name: string) => {
+    //     console.log('set name success')
+    //     this.name = name
+    // }
+    getName = () => {
+        return this.name
     }
 
-    throw new Error('Conta inválida')
-  }
+    setStatus = (value:boolean):void => {
+        this.status = value;
+    }
+
+    getBalance = ()=>{
+        return this.balance
+    }
+
+    setBalance= (value: number):void => {
+        this.balance =value;
+    }
+
+    readonly validateStatus = () :boolean => {
+        if(this.status){
+            return this.status
+        }
+        throw new Error('Conta desativada')
+    }
+
+    deposit = (value:number): void => {
+        if(this.validateStatus()){
+        this.balance += value;
+            console.log("deposit success!")
+        }
+    }
+    
+    withDraw = (value: number): void => {
+        if(this.validateStatus()){
+           if(this.balance >= value){
+             this.balance -= value;           
+            }else{
+             throw new Error('Saldo Insuficiente')
+            }
+           console.log("Withdraw success!")
+        }else{
+            throw new Error('Conta desativada')
+        }
+    }
+    
 }
