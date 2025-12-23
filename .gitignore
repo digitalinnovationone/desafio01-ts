@@ -1,0 +1,11 @@
+node_modules
+dist
+*.js
+*.js.map
+*.log
+*.bak
+*.tmp
+package-lock.json
+package.json
+.DS_Store
+.vscode
